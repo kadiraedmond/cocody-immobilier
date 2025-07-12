@@ -1,0 +1,81 @@
+/* resposivité des pages */
+
+/* start navbar  */
+@media (max-width: 768px) {
+    #titre_logo {
+      display: none;
+    }
+
+    #search {
+      width: 232px;
+      height: 38px;
+      border-radius: 30px;
+      font-size: 14px;
+      margin-left: -34px;
+    }
+
+    .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover>a {
+      color: #3097a5;
+      width: 30px !important;
+  }
+
+  .navbar-mobile a, .navbar-mobile a:focus {
+    padding: 10px 20px;
+    font-size: 15px;
+    color: #2d405f;
+    width: 30px;
+}
+
+
+
+  }
+
+  /* start heros  */
+@media (max-width: 768px) {
+     
+    #heros_left_section{
+        display: none;
+    }
+
+    .section-title h2 {
+      font-size: 19px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      position: relative;
+      color: #2d405f;
+  }
+  #badges2 {
+    background: rgb(48 151 165);
+      color: white;
+      width: 331px;
+      height: 100px;
+      padding: 1px 16px;
+      font-weight: 700;
+      text-align: center;
+      position: absolute;
+      text-transform: uppercase;
+      border-radius: 10px;
+      line-height: 24px;
+      border: none;
+      /* top: 10px; */
+      left: 21%;
+      z-index: 1;
+      bottom: 10px;
+  }
+
+  #expert_p{
+    position: relative !important;
+     bottom: 1rem;
+     text-align: start !important;
+   }
+
+   #col_rigth_response{
+    display: flex;
+   }
+
+   #row_rigth{
+    margin-top: 0px;
+    margin-left: 0px !important;
+   }
+  }

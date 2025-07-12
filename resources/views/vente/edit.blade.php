@@ -1,0 +1,703 @@
+@extends('layouts.admin')
+
+@section('content')
+
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Vente/</span> Modifier un bien en vente</h4>
+
+              <!-- Basic Layout -->
+              <div class="row">
+                <div class="col-xl">
+                  <div class="card mb-4">
+                    @if (session('status'))
+                    <h6 class="alert alert-success">{{ session('status') }}</h6>
+                   @endif
+                    <div class="card-body">
+                        <form action="{{ url('update-vente/'.$Vente->id) }}" method="POST" enctype="multipart/form-data">
+                             
+                            @csrf
+                            @method('PUT')
+                         <div class="mb-3">
+                            <label for="defaultSelect" class="form-label">Type</label>
+                            <select id="defaultSelect" name="type" class="form-select">
+                              <option value="{{ $Vente->type }}">{{ $Vente->type }}</option>
+                              <option value="Terrain">Terrain</option>
+                              <option value="Appartement">Appartement</option>
+                              <option value="Studio">Studio</option>
+                              <option value="Bureaux">Bureaux</option>
+                              <option value="Maison">Maison</option>
+                              <option value="Villa">Villa</option>
+                              <option value="Immeuble">Immeuble</option>
+                              <option value="Magazin">Magazin</option>
+                              <option value="Entrepôt">Entrepôts</option>
+                            </select>
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label" for="basic-default-message">Presentation</label>
+                            <textarea
+                              id="basic-default-message"
+                              class="form-control"
+                              name="presentation"
+                              value="{{ $Vente->presentation }}"
+                            >{{ $Vente->presentation }}</textarea>
+                          </div>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-company">Adresse</label>
+                          <input type="text" name="adresse"   value="{{ $Vente->adresse }}" class="form-control" id="basic-default-company" />
+                        </div>
+                       
+                          <div class="mb-3">
+                            <label for="defaultSelect" class="form-label">Configuration </label>
+                            <select id="defaultSelect" name="configuration"  class="form-select">
+                                <option value="{{ $Vente->configuration }}">{{ $Vente->configuration }}</option>
+                              <option value="studio">Studio</option>
+                              <option value="deux_piéces">Deux pièces </option>
+                              <option value="trois_piéces">Trois pièces </option>
+                              <option value="quatre_piéces">Quatre pièces </option>
+                              <option value="six_piéces">six pièces   </option>
+                              <option value="entrepot">Entrepôts  </option>
+                              <option value="boutique">Boutique  </option>
+                            </select>
+                          </div>
+
+                        
+                        
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-phone">Prix</label>
+                          <input
+                            type="text"
+                            id="basic-default-phone"
+                            class="form-control phone-mask"
+                            name="prix"
+                            value="{{ $Vente->prix }}"
+                          />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-icon-default-email">Superficie</label>
+                            <div class="input-group input-group-merge">
+                              <input
+                                type="text"
+                                id="basic-icon-default-email"
+                                class="form-control" 
+                                name="superficie"
+                                value="{{ $Vente->superficie }}"
+                              />
+                               
+                            </div>
+                             
+                        </div>
+                        {{-- <div class="mb-3">
+                            <small class="d-block" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: inherit;">La cour</small>
+                            <div class="form-check form-check-inline mt-3">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="cour"
+                                id="inlineRadio1"
+                                value="oui"
+                              />
+                              <label class="form-check-label" for="inlineRadio1">Oui</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="cour"
+                                id="inlineRadio2"
+                                value="non"
+                              />
+                              <label class="form-check-label" for="inlineRadio2">Non</label>
+                            </div>
+                            
+                        </div> --}}
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="basic-icon-default-email">Climatisation</label>
+                                    <div class="input-group input-group-merge">
+                                      <input
+                                        type="number"
+                                        id="basic-icon-default-email"
+                                        class="form-control" 
+                                        name="climatisation"
+                                        value="{{ $Vente->climatisation }}"
+                                      />
+                                       
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="basic-icon-default-email">Douche</label>
+                                    <div class="input-group input-group-merge">
+                                      <input
+                                        type="number"
+                                        id="basic-icon-default-email"
+                                        class="form-control" 
+                                        name="douche"
+                                        value="{{ $Vente->douche }}"
+                                      />
+                                       
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label class="form-label" for="basic-icon-default-email">Cuisine</label>
+                                    <div class="input-group input-group-merge">
+                                      <input
+                                        type="number"
+                                        id="basic-icon-default-email"
+                                        class="form-control" 
+                                        name="cuisine"
+                                        value="{{ $Vente->cuisine }}"
+                                      />
+                                      
+                                       
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="mb-3">
+                                <label class="form-label" for="basic-icon-default-email">Balcon</label>
+                                <div class="input-group input-group-merge">
+                                  <input
+                                    type="number"
+                                    id="basic-icon-default-email"
+                                    class="form-control" 
+                                    name="balcon"
+                                    value="{{ $Vente->balcon }}"
+                                  />
+                                   
+                                </div>
+                                 
+                            </div>
+                            
+                            </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-3">
+                              <div class="mb-3">
+                                  <small class="d-block" style="font-size: 11px; text-transform: uppercase; letter-spacing: inherit;">Sonnerie</small>
+                                  <div class="form-check form-check-inline mt-3">
+                                    <input
+                                      class="form-check-input"
+                                      type="radio"
+                                      name="sonnerie"
+                                      id="inlineRadio1"
+                                      value="oui"
+                                    />
+                                    <label class="form-check-label" for="inlineRadio1" style="font-size: 11px;">Oui</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input
+                                      class="form-check-input"
+                                      type="radio"
+                                      name="sonnerie"
+                                      id="inlineRadio2"
+                                      value="non"
+                                    />
+                                    <label class="form-check-label" for="inlineRadio2" style="font-size: 11px;">Non</label>
+                                  </div>
+                                  
+                              </div>  
+                          </div>
+                          <div class="col-md-3">
+                              <div class="mb-3">
+                                  <small class="d-block" style="font-size: 11px; text-transform: uppercase; letter-spacing: inherit;">Alarme incendie </small>
+                                  <div class="form-check form-check-inline mt-3">
+                                    <input
+                                      class="form-check-input"
+                                      type="radio"
+                                      name="alarme"
+                                      id="inlineRadio1"
+                                      value="oui"
+                                    />
+                                    <label class="form-check-label" for="inlineRadio1" style="font-size: 11px;">Oui</label>
+                                  </div>
+                                  <div class="form-check form-check-inline" >
+                                    <input
+                                      class="form-check-input"
+                                      type="radio"
+                                      name="alarme"
+                                      id="inlineRadio2"
+                                      value="non"
+                                    />
+                                    <label class="form-check-label" for="inlineRadio2" style="font-size: 11px;">Non</label>
+                                  </div>
+                                  
+                              </div>                                
+                          </div>
+                          <div class="col-md-3">
+                              <div class="mb-3">
+                                  <small class="d-block" style="font-size: 11px; text-transform: uppercase; letter-spacing: inherit;">Détecteur de fumée </small>
+                                  <div class="form-check form-check-inline mt-3">
+                                    <input
+                                      class="form-check-input"
+                                      type="radio"
+                                      name="detecteur"
+                                      id="inlineRadio1"
+                                      value="oui"
+                                    />
+                                    <label class="form-check-label" for="inlineRadio1" style="font-size: 11px;">Oui</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input
+                                      class="form-check-input"
+                                      type="radio"
+                                      name="detecteur"
+                                      id="inlineRadio2"
+                                      value="non"
+                                    />
+                                    <label class="form-check-label" for="inlineRadio2" style="font-size: 11px;">Non</label>
+                                  </div>
+                                  
+                              </div>                           
+                          </div>
+
+                          <div class="col-md-3">
+                            <div class="mb-3">
+                                <small class="d-block" style="font-size: 11px; text-transform: uppercase; letter-spacing: inherit;">sécurité </small>
+                                <div class="form-check form-check-inline mt-3">
+                                  <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="securite"
+                                    id="inlineRadio1"
+                                    value="oui"
+                                  />
+                                  <label class="form-check-label" for="inlineRadio1"  style="font-size: 11px;">Oui</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="securite"
+                                    id="inlineRadio2"
+                                    value="non"
+                                  />
+                                  <label class="form-check-label" for="inlineRadio2" style="font-size: 11px;">Non</label>
+                                </div>
+                                
+                            </div>                           
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="defaultSelect" class="form-label">Niveau </label>
+                          <select id="defaultSelect" name="niveau" class="form-select">
+                            <option value="{{ $Vente->climatisation }}">{{ $Vente->climatisation }}</option>
+                            <option value="rez-de-chaussée">rez-de-chaussée</option>
+                            <option value="1">Etage 1</option>
+                            <option value="2">Etage 2 </option>
+                            <option value="3">Etage 3</option>
+                            <option value="4">Etage 4 </option>
+                            <option value="5">Etage 5</option>
+                            <option value="6">Etage 6 </option>
+                            <option value="7">Etage 7</option>
+                            <option value="8">Etage 8 </option>
+                            <option value="9">Etage 9</option>
+                            <option value="10">Etage 10 </option>
+                             
+                          </select>
+                        </div>
+                      </div>
+                        
+                     
+                     
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl">
+                  <div class="card mb-4">
+                    
+                    <div class="card-body">
+                        
+                        <div class="row">
+                          <div class="col-md-3">
+                              <div class="mb-3">
+                                  <small class="d-block" style="font-size: 11px; text-transform: uppercase; letter-spacing: inherit;">Contrôle d’accès </small>
+                                  <div class="form-check form-check-inline mt-3">
+                                    <input
+                                      class="form-check-input"
+                                      type="radio"
+                                      name="controle"
+                                      id="inlineRadio1"
+                                      value="oui"
+                                    />
+                                    <label class="form-check-label" for="inlineRadio1" style="font-size: 11px;">Oui</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input
+                                      class="form-check-input"
+                                      type="radio"
+                                      name="controle"
+                                      id="inlineRadio2"
+                                      value="non"
+                                    />
+                                    <label class="form-check-label" for="inlineRadio2" style="font-size: 11px;">Non</label>
+                                  </div>
+                                  
+                              </div>  
+                          </div>
+                          <div class="col-md-3">
+                              <div class="mb-3">
+                                  <small class="d-block" style="font-size: 11px; text-transform: uppercase; letter-spacing: inherit;">Ascenseur </small>
+                                  <div class="form-check form-check-inline mt-3">
+                                    <input
+                                      class="form-check-input"
+                                      type="radio"
+                                      name="ascenseur"
+                                      id="inlineRadio1"
+                                      value="oui"
+                                    />
+                                    <label class="form-check-label" for="inlineRadio1" style="font-size: 11px;">Oui</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input
+                                      class="form-check-input"
+                                      type="radio"
+                                      name="ascenseur"
+                                      id="inlineRadio2"
+                                      value="non"
+                                    />
+                                    <label class="form-check-label" for="inlineRadio2" style="font-size: 11px;">Non</label>
+                                  </div>
+                                  
+                              </div>                                
+                          </div>
+                          <div class="col-md-3">
+                            <div class="mb-3">
+                                <small class="d-block" style="font-size: 11px; text-transform: uppercase; letter-spacing: inherit;">Cour </small>
+                                <div class="form-check form-check-inline mt-3">
+                                  <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="cour"
+                                    id="inlineRadio1"
+                                    value="oui"
+                                  />
+                                  <label class="form-check-label" for="inlineRadio1" style="font-size: 11px;">Oui</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="cour"
+                                    id="inlineRadio2"
+                                    value="non"
+                                  />
+                                  <label class="form-check-label" for="inlineRadio2" style="font-size: 11px;">Non</label>
+                                </div>
+                                
+                            </div>                                
+                          </div>
+
+                          <div class="col-md-3">
+                            <div class="mb-3">
+                                <small class="d-block" style="font-size: 11px; text-transform: uppercase; letter-spacing: inherit;">Groupe électrogène</small>
+                                <div class="form-check form-check-inline mt-3">
+                                  <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="groupe"
+                                    id="inlineRadio1"
+                                    value="oui"
+                                  />
+                                  <label class="form-check-label" for="inlineRadio1" style="font-size: 11px;">Oui</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="groupe"
+                                    id="inlineRadio2"
+                                    value="non"
+                                  />
+                                  <label class="form-check-label" for="inlineRadio2" style="font-size: 11px;">Non</label>
+                                </div>
+                                
+                            </div>                                
+                          </div>
+                       </div>
+                        {{-- <div class="mb-3">
+                            <small class="d-block" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: inherit;">Titre de propriété </small>
+                            <small class="d-block mt-2">ACD</small>
+                            <div class="form-check form-check-inline mt-3">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                id="inlineRadio1"
+                                value="oui"
+                              />
+                              <label class="form-check-label" for="inlineRadio1">Oui</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                id="inlineRadio2"
+                                value="non"
+                              />
+                              <label class="form-check-label" for="inlineRadio2">Non</label>
+                            </div>
+                            
+                        </div> --}}
+
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="mb-3">
+                              <label class="form-label" for="basic-icon-default-fullname">Images de couverture </label>
+                              <div class="input-group input-group-merge">
+                                
+                                <input
+                                  type="file"
+                                  class="form-control"
+                                  id="basic-icon-default-fullname"
+                                  placeholder="John Doe"
+                                  aria-label="John Doe"
+                                  name="images"
+                                  aria-describedby="basic-icon-default-fullname2"
+                                />
+                                <img src="{{ asset('uploads/Vente/'.$Vente->images) }}" width="70px" height="70px" alt="Image">
+                              </div>
+                          </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="mb-3">
+                              <label class="form-label" for="basic-icon-default-fullname">Images 1 </label>
+                              <div class="input-group input-group-merge">
+                                
+                                <input
+                                  type="file"
+                                  class="form-control"
+                                  id="basic-icon-default-fullname"
+                                  placeholder="John Doe"
+                                  aria-label="John Doe"
+                                  name="imag"
+                                  aria-describedby="basic-icon-default-fullname2"
+                                />
+                                <img src="{{ asset('uploads/Vente/'.$Vente->imag) }}" width="70px" height="70px" alt="Image">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="mb-3">
+                              <label class="form-label" for="basic-icon-default-fullname">Images 2 </label>
+                              <div class="input-group input-group-merge">
+                                
+                                <input
+                                  type="file"
+                                  class="form-control"
+                                  id="basic-icon-default-fullname"
+                                  placeholder="John Doe"
+                                  aria-label="John Doe"
+                                  name="ima"
+                                  aria-describedby="basic-icon-default-fullname2"
+                                />
+                                <img src="{{ asset('uploads/Vente/'.$Vente->ima) }}" width="70px" height="70px" alt="Image">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="mb-3">
+                              <label class="form-label" for="basic-icon-default-fullname">Images 3 </label>
+                              <div class="input-group input-group-merge">
+                                
+                                <input
+                                  type="file"
+                                  class="form-control"
+                                  id="basic-icon-default-fullname"
+                                  placeholder="John Doe"
+                                  aria-label="John Doe"
+                                  name="im"
+                                  aria-describedby="basic-icon-default-fullname2"
+                                />
+                                <img src="{{ asset('uploads/Vente/'.$Vente->im) }}" width="70px" height="70px" alt="Image">
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="mb-3">
+                              <label class="form-label" for="basic-icon-default-fullname">Images 4 </label>
+                              <div class="input-group input-group-merge">
+                                
+                                <input
+                                  type="file"
+                                  class="form-control"
+                                  id="basic-icon-default-fullname"
+                                  placeholder="John Doe"
+                                  aria-label="John Doe"
+                                  name="picture"
+                                  aria-describedby="basic-icon-default-fullname2"
+                                />
+                                <img src="{{ asset('uploads/Vente/'.$Vente->picture) }}" width="70px" height="70px" alt="Image">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="mb-3">
+                              <label class="form-label" for="basic-icon-default-fullname">Images  5</label>
+                              <div class="input-group input-group-merge">
+                                
+                                <input
+                                  type="file"
+                                  class="form-control"
+                                  id="basic-icon-default-fullname"
+                                  placeholder="John Doe"
+                                  aria-label="John Doe"
+                                  name="pictur"
+                                  aria-describedby="basic-icon-default-fullname2"
+                                />
+                                <img src="{{ asset('uploads/Vente/'.$Vente->pictur) }}" width="70px" height="70px" alt="Image">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="mb-3">
+                              <label class="form-label" for="basic-icon-default-fullname">Images 6 </label>
+                              <div class="input-group input-group-merge">
+                                
+                                <input
+                                  type="file"
+                                  class="form-control"
+                                  id="basic-icon-default-fullname"
+                                  placeholder="John Doe"
+                                  aria-label="John Doe"
+                                  name="pict"
+                                  aria-describedby="basic-icon-default-fullname2"
+                                />
+                                <img src="{{ asset('uploads/Vente/'.$Vente->pict) }}" width="70px" height="70px" alt="Image">
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-icon-default-fullname">Vidéo</label>
+                            <div class="input-group input-group-merge">
+                              
+                              <input
+                                type="file"
+                                class="form-control"
+                                id="basic-icon-default-fullname"
+                                placeholder="John Doe"
+                                aria-label="John Doe"
+                                name="videos"
+                                aria-describedby="basic-icon-default-fullname2"
+                              />
+                              <img src="{{ asset('uploads/Vente/'.$Vente->videos) }}" width="70px" height="70px" alt="Image">
+                            </div>
+                        </div>
+                        {{-- <div class="mb-3">
+                            <label class="form-label" for="basic-default-message">Conditions </label>
+                            <textarea
+                              id="basic-default-message"
+                              class="form-control"
+                            ></textarea>
+                        </div> --}}
+                        
+                       
+                       <div class="row">
+                       <H2 style="font-size: 21px;">Responsable </H2>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                            <label class="form-label" for="basic-icon-default-fullname">Image</label>
+                                            <div class="input-group input-group-merge">
+                                            
+                                            <input
+                                                type="file"
+                                                class="form-control"
+                                                id="basic-icon-default-fullname"
+                                                placeholder="John Doe"
+                                                name="resp_images"
+                                                aria-label="John Doe"
+                                                aria-describedby="basic-icon-default-fullname2"
+                                            />
+                                            <img src="{{ asset('uploads/Vente/'.$Vente->resp_images) }}" width="70px" height="70px" alt="Image">
+                                            </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="basic-icon-default-email">Nom</label>
+                                    <div class="input-group input-group-merge">
+                                      <input
+                                        type="text"
+                                        id="basic-icon-default-email"
+                                        class="form-control" 
+                                        name="nom"
+                                        value="{{ $Vente->nom}}"
+                                      />
+                                       
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="basic-icon-default-email">Prénoms</label>
+                                    <div class="input-group input-group-merge">
+                                      <input
+                                        type="text"
+                                        id="basic-icon-default-email"
+                                        class="form-control" 
+                                        name="prenoms"
+                                        value="{{ $Vente->prenoms }}"
+                                      />
+                                       
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="basic-icon-default-email">Téléphone</label>
+                                    <div class="input-group input-group-merge">
+                                      <input
+                                        type="tel"
+                                        id="basic-icon-default-email"
+                                        class="form-control" 
+                                        name="telephone"
+                                        value="{{ $Vente->telephone }}"
+                                      />
+                                       
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                             <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="basic-icon-default-email">Adresse électronique </label>
+                                    <div class="input-group input-group-merge">
+                                      <input
+                                        type="email"
+                                        id="basic-icon-default-email"
+                                        class="form-control" 
+                                        name="resp_adresse"
+                                        value="{{ $Vente->resp_adresse }}"
+                                      />
+                                       
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                        </div>
+
+                       
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+@endsection
